@@ -5,6 +5,7 @@ import org.gradle.api.tasks.testing.Test
 plugins {
     id 'java'
     id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 repositories {
@@ -40,7 +41,7 @@ java {
 }
 
 application {
-    mainClass = 'com.beyondcivil.ehsens.hls.App'
+    mainClass = 'com.beyondcivil.pub.helidon20.ServiceMain'
 }
 
 tasks.withType(JavaCompile).configureEach {
