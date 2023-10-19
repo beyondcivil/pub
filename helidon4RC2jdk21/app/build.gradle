@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'io.helidon.webserver:helidon-webserver:4.0.0-RC1'
+
+    implementation 'com.google.inject:guice:7.0.0'
+    implementation 'com.google.guava:guava:32.1.2-jre'
+    implementation 'ch.qos.logback:logback-core:1.4.11'
+    implementation 'ch.qos.logback:logback-classic:1.4.11'
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+
+    testImplementation 'io.helidon.webserver.testing.junit5:helidon-webserver-testing-junit5:4.0.0-RC1'
+}
+
+testing {
+    suites {
+        test {
+            useJUnitJupiter('5.9.2')
+        }
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'com.beyondcivil.pub.helidon4RC2jdk21.ServiceMain'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
